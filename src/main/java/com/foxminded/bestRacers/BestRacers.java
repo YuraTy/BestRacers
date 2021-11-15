@@ -14,11 +14,9 @@ public class BestRacers {
         Map<String, LocalTime> startMap = new HashMap<>(readingData.timeParticipants("start.log"));
         Map<String,LocalTime > endMap = new HashMap<>(readingData.timeParticipants("end.log"));
 
-        for (Map.Entry m :startMap.entrySet()){
-            System.out.println("mapTime.put("+ '"' + m.getKey()+ '"' +"," + '"' + m.getValue()+ '"' +");");
-        }
-
-        //System.out.println(endMap);
+        System.out.println(abbreviationMap);
+        System.out.println(startMap);
+        System.out.println(endMap);
 
     }
 }

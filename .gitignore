@@ -5,6 +5,8 @@
 
 # Log file
 *.log
+!end.log
+!start.log
 
 # BlueJ files
 *.ctxt
@@ -26,3 +28,4 @@
 hs_err_pid*
 
 *.iml
+
