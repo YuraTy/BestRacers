@@ -42,7 +42,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.foxminded.bestRacers.BestRacers</mainClass>
+                            <mainClass>com.foxminded.bestracers.BestRacers</mainClass>
                         </manifest>
                     </archive>
 

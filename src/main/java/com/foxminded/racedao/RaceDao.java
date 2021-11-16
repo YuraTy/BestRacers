@@ -1,4 +1,4 @@
-package com.foxminded.readingData;
+package com.foxminded.racedao;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -7,7 +7,7 @@ import java.time.LocalTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class ReadingData {
+public class RaceDao {
 
     public Map<String, LocalTime> timeParticipants(String filePath) throws IOException {
         return Files.lines(Paths.get(filePath))

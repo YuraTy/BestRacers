@@ -1,4 +1,4 @@
-package com.foxminded.readingData;
+package com.foxminded.racedao;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -9,31 +9,31 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-class ReadingDataTest {
-    private final ReadingData readingData = new ReadingData();
+class RaceDaoTest {
+    private final RaceDao raceDao = new RaceDao();
 
 
     @Test
     void timeParticipantsStart() throws IOException {
         Map<String, LocalTime> mapTimeExpectations = testMapTimeStart();
-        String fileStart = "start.log";
-        Map<String, LocalTime> actualMap = readingData.timeParticipants(fileStart);
+        String fileStart = "resources/start.log";
+        Map<String, LocalTime> actualMap = raceDao.timeParticipants(fileStart);
         Assertions.assertEquals(mapTimeExpectations,actualMap);
     }
 
     @Test
     void timeParticipantsEnd() throws IOException {
         Map<String, LocalTime> mapTimeExpectations = testMapTimeEnd();
-        String fileEnd = "end.log";
-        Map<String, LocalTime> actualMap = readingData.timeParticipants(fileEnd);
+        String fileEnd = "resources/end.log";
+        Map<String, LocalTime> actualMap = raceDao.timeParticipants(fileEnd);
         Assertions.assertEquals(mapTimeExpectations,actualMap);
     }
 
     @Test
     void abbreviationParticipants() throws IOException {
         Map<String, String> abbreviationExpectationsMap = abbreviation();
-        String fileAbbreviations = "abbreviations.txt";
-        Map<String, String> actualMap = readingData.abbreviationParticipants(fileAbbreviations);
+        String fileAbbreviations = "resources/abbreviations.txt";
+        Map<String, String> actualMap = raceDao.abbreviationParticipants(fileAbbreviations);
         Assertions.assertEquals(abbreviationExpectationsMap,actualMap);
     }
 
@@ -45,7 +45,7 @@ class ReadingDataTest {
         abbreviationExpectationsMap.put("DRR","Daniel Ricciardo_RED BULL RACING TAG HEUER");
         abbreviationExpectationsMap.put("KMH","Kevin Magnussen_HAAS FERRARI");
         abbreviationExpectationsMap.put("SPF","Sergio Perez_FORCE INDIA MERCEDES");
-        abbreviationExpectationsMap.put("SVM","Stparsefel Vandoorne_MCLAREN RENAULT");
+        abbreviationExpectationsMap.put("SVM","Stoffel Vandoorne_MCLAREN RENAULT");
         abbreviationExpectationsMap.put("CLS","Charles Leclerc_SAUBER FERRARI");
         abbreviationExpectationsMap.put("BHS","Brendon Hartley_SCUDERIA TORO ROSSO HONDA");
         abbreviationExpectationsMap.put("LHM","Lewis Hamilton_MERCEDES");
@@ -55,7 +55,7 @@ class ReadingDataTest {
         abbreviationExpectationsMap.put("SSW","Sergey Sirotkin_WILLIAMS MERCEDES");
         abbreviationExpectationsMap.put("NHR","Nico Hulkenberg_RENAULT");
         abbreviationExpectationsMap.put("MES","Marcus Ericsson_SAUBER FERRARI");
-        abbreviationExpectationsMap.put("Eparse","Esteban Ocon_FORCE INDIA MERCEDES");
+        abbreviationExpectationsMap.put("EOF","Esteban Ocon_FORCE INDIA MERCEDES");
         abbreviationExpectationsMap.put("PGS","Pierre Gasly_SCUDERIA TORO ROSSO HONDA");
         abbreviationExpectationsMap.put("KRF","Kimi Raikkonen_FERRARI");
         return abbreviationExpectationsMap;
