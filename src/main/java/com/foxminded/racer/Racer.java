@@ -4,8 +4,6 @@ import java.time.LocalTime;
 
 public class Racer {
 
-    String car;
-
     public Racer(String name, String fulName, String car) {
         this.car = car;
         this.fulName = fulName;
@@ -22,24 +20,23 @@ public class Racer {
         this.name = name;
     }
 
+    private String car;
     public String getCar() {
         return car;
     }
-
+    private String fulName;
     public String getFulName() {
         return fulName;
     }
-
-    String fulName;
-
+    private LocalTime localTime;
     public LocalTime getLocalTime() {
         return localTime;
     }
-
+    private String name;
     public String getName() {
         return name;
     }
 
-    LocalTime localTime;
-    String name;
+
+
 }

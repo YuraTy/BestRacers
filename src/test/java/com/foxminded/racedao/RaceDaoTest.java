@@ -4,8 +4,6 @@ import com.foxminded.racer.Racer;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.io.IOException;
@@ -15,63 +13,58 @@ import java.util.*;
 @ExtendWith(MockitoExtension.class)
 class RaceDaoTest {
 
-    @Mock
-    RaceDao raceDao;
+    private final RaceDao raceDao = new RaceDao();
 
     @Test
     void timeParticipantsStart() throws IOException {
-        String fileStart = "resources/start.log";
+        String fileStartTest = "resources/start.log";
         List<Racer> listTimeExpectations = testListTimeStart();
-        Mockito.when(raceDao.timeParticipants(fileStart)).thenReturn(listTimeExpectations);
-        List<Racer> actualList = raceDao.timeParticipants(fileStart);
+        List<Racer> actualList = raceDao.timeParticipants(fileStartTest);
         Assertions.assertEquals(listTimeExpectations, actualList);
     }
 
     @Test
     void timeParticipantsEnd() throws IOException {
-        String fileEnd = "resources/end.log";
+        String fileEndTest = "resources/end.log";
         List<Racer> listTimeExpectations = testListTimeEnd();
-        Mockito.when(raceDao.timeParticipants(fileEnd)).thenReturn(listTimeExpectations);
-        List<Racer> actualList = raceDao.timeParticipants(fileEnd);
+        List<Racer> actualList = raceDao.timeParticipants(fileEndTest);
         Assertions.assertEquals(listTimeExpectations, actualList);
     }
 
     @Test
     void abbreviationParticipants() throws IOException {
-        String fileAbbreviations = "resources/abbreviations.txt";
+        String fileAbbreviationsTest = "resources/abbreviations.txt";
         List<Racer> abbreviationExpectationList = testListAbbreviation();
-        Mockito.when(raceDao.abbreviationParticipants(fileAbbreviations)).thenReturn(abbreviationExpectationList);
-        List<Racer> actualList = raceDao.abbreviationParticipants(fileAbbreviations);
+        List<Racer> actualList = raceDao.abbreviationParticipants(fileAbbreviationsTest);
         Assertions.assertEquals(abbreviationExpectationList, actualList);
     }
 
     public List<Racer> testListAbbreviation() {
         List<Racer> abbreviationExpectationsList = new ArrayList<>();
-        abbreviationExpectationsList.add(new Racer("VBM", "Valtteri Bottas", "MERCEDES"));
-        abbreviationExpectationsList.add(new Racer("SVF", "Sebastian Vettel", "FERRARI"));
-        abbreviationExpectationsList.add(new Racer("CSR", "Carlos Sainz", "RENAULT"));
-        abbreviationExpectationsList.add(new Racer("DRR", "Daniel Ricciardo", "RED BULL RACING TAG HEUER"));
-        abbreviationExpectationsList.add(new Racer("KMH", "Kevin Magnussen", "HAAS FERRARI"));
-        abbreviationExpectationsList.add(new Racer("SPF", "Sergio Perez", "FORCE INDIA MERCEDES"));
-        abbreviationExpectationsList.add(new Racer("SVM", "Stoffel Vandoorne", "MCLAREN RENAULT"));
-        abbreviationExpectationsList.add(new Racer("CLS", "Charles Leclerc", "SAUBER FERRARI"));
-        abbreviationExpectationsList.add(new Racer("BHS", "Brendon Hartley", "SCUDERIA TORO ROSSO HONDA"));
-        abbreviationExpectationsList.add(new Racer("LHM", "Lewis Hamilton", "MERCEDES"));
-        abbreviationExpectationsList.add(new Racer("LSW", "Lance Stroll", "WILLIAMS MERCEDES"));
-        abbreviationExpectationsList.add(new Racer("RGH", "Romain Grosjean", "HAAS FERRARI"));
-        abbreviationExpectationsList.add(new Racer("FAM", "Fernando Alonso", "MCLAREN RENAULT"));
-        abbreviationExpectationsList.add(new Racer("SSW", "Sergey Sirotkin", "WILLIAMS MERCEDES"));
-        abbreviationExpectationsList.add(new Racer("NHR", "Nico Hulkenberg", "RENAULT"));
-        abbreviationExpectationsList.add(new Racer("MES", "Marcus Ericsson", "SAUBER FERRARI"));
-        abbreviationExpectationsList.add(new Racer("EOF", "Esteban Ocon", "FORCE INDIA MERCEDES"));
-        abbreviationExpectationsList.add(new Racer("PGS", "Pierre Gasly", "SCUDERIA TORO ROSSO HONDA"));
-        abbreviationExpectationsList.add(new Racer("KRF", "Kimi Raikkonen", "FERRARI"));
+        abbreviationExpectationsList.add(new Racer("DRR","Daniel Ricciardo","RED BULL RACING TAG HEUER"));
+        abbreviationExpectationsList.add(new Racer("SVF","Sebastian Vettel","FERRARI"));
+        abbreviationExpectationsList.add(new Racer("LHM","Lewis Hamilton","MERCEDES"));
+        abbreviationExpectationsList.add(new Racer("KRF","Kimi Raikkonen","FERRARI"));
+        abbreviationExpectationsList.add(new Racer("VBM","Valtteri Bottas","MERCEDES"));
+        abbreviationExpectationsList.add(new Racer("EOF","Esteban Ocon","FORCE INDIA MERCEDES"));
+        abbreviationExpectationsList.add(new Racer("FAM","Fernando Alonso","MCLAREN RENAULT"));
+        abbreviationExpectationsList.add(new Racer("CSR","Carlos Sainz","RENAULT"));
+        abbreviationExpectationsList.add(new Racer("SPF","Sergio Perez","FORCE INDIA MERCEDES"));
+        abbreviationExpectationsList.add(new Racer("PGS","Pierre Gasly","SCUDERIA TORO ROSSO HONDA"));
+        abbreviationExpectationsList.add(new Racer("NHR","Nico Hulkenberg","RENAULT"));
+        abbreviationExpectationsList.add(new Racer("SVM","Stoffel Vandoorne","MCLAREN RENAULT"));
+        abbreviationExpectationsList.add(new Racer("SSW","Sergey Sirotkin","WILLIAMS MERCEDES"));
+        abbreviationExpectationsList.add(new Racer("CLS","Charles Leclerc","SAUBER FERRARI"));
+        abbreviationExpectationsList.add(new Racer("RGH","Romain Grosjean","HAAS FERRARI"));
+        abbreviationExpectationsList.add(new Racer("BHS","Brendon Hartley","SCUDERIA TORO ROSSO HONDA"));
+        abbreviationExpectationsList.add(new Racer("MES","Marcus Ericsson","SAUBER FERRARI"));
+        abbreviationExpectationsList.add(new Racer("LSW","Lance Stroll","WILLIAMS MERCEDES"));
+        abbreviationExpectationsList.add(new Racer("KMH","Kevin Magnussen","HAAS FERRARI"));
         return abbreviationExpectationsList;
     }
 
     public List<Racer> testListTimeStart() {
         List<Racer> listStartTest = new ArrayList<>();
-        listStartTest.add(new Racer("SVF", LocalTime.parse("12:02:58.917")));
         listStartTest.add(new Racer("SVF", LocalTime.parse("12:02:58.917")));
         listStartTest.add(new Racer("NHR", LocalTime.parse("12:02:49.914")));
         listStartTest.add(new Racer("FAM", LocalTime.parse("12:13:04.512")));
@@ -96,25 +89,25 @@ class RaceDaoTest {
 
     public List<Racer> testListTimeEnd() {
         List<Racer> listEndTest = new ArrayList<>();
+        listEndTest.add(new Racer("MES", LocalTime.parse("12:05:58.778")));
+        listEndTest.add(new Racer("RGH", LocalTime.parse("12:06:27.441")));
+        listEndTest.add(new Racer("SPF", LocalTime.parse("12:13:13.883")));
+        listEndTest.add(new Racer("LSW", LocalTime.parse("12:07:26.834")));
+        listEndTest.add(new Racer("DRR", LocalTime.parse("12:15:24.067")));
+        listEndTest.add(new Racer("NHR", LocalTime.parse("12:04:02.979")));
+        listEndTest.add(new Racer("CSR", LocalTime.parse("12:04:28.095")));
+        listEndTest.add(new Racer("KMH", LocalTime.parse("12:04:04.396")));
+        listEndTest.add(new Racer("BHS", LocalTime.parse("12:16:05.164")));
+        listEndTest.add(new Racer("SVM", LocalTime.parse("12:19:50.198")));
+        listEndTest.add(new Racer("KRF", LocalTime.parse("12:04:13.889")));
         listEndTest.add(new Racer("VBM", LocalTime.parse("12:01:12.434")));
         listEndTest.add(new Racer("SVF", LocalTime.parse("12:04:03.332")));
-        listEndTest.add(new Racer("CSR", LocalTime.parse("12:04:28.095")));
-        listEndTest.add(new Racer("DRR", LocalTime.parse("12:15:24.067")));
-        listEndTest.add(new Racer("KMH", LocalTime.parse("12:04:04.396")));
-        listEndTest.add(new Racer("SPF", LocalTime.parse("12:13:13.883")));
-        listEndTest.add(new Racer("SVM", LocalTime.parse("12:19:50.198")));
-        listEndTest.add(new Racer("CLS", LocalTime.parse("12:10:54.750")));
-        listEndTest.add(new Racer("BHS", LocalTime.parse("12:16:05.164")));
-        listEndTest.add(new Racer("LHM", LocalTime.parse("12:19:32.585")));
-        listEndTest.add(new Racer("LSW", LocalTime.parse("12:07:26.834")));
-        listEndTest.add(new Racer("RGH", LocalTime.parse("12:06:27.441")));
-        listEndTest.add(new Racer("FAM", LocalTime.parse("12:14:17.169")));
-        listEndTest.add(new Racer("SSW", LocalTime.parse("12:17:24.354")));
-        listEndTest.add(new Racer("NHR", LocalTime.parse("12:04:02.979")));
-        listEndTest.add(new Racer("MES", LocalTime.parse("12:05:58.778")));
         listEndTest.add(new Racer("EOF", LocalTime.parse("12:19:11.838")));
         listEndTest.add(new Racer("PGS", LocalTime.parse("12:08:36.586")));
-        listEndTest.add(new Racer("KRF", LocalTime.parse("12:04:13.889")));
+        listEndTest.add(new Racer("SSW", LocalTime.parse("12:17:24.354")));
+        listEndTest.add(new Racer("FAM", LocalTime.parse("12:14:17.169")));
+        listEndTest.add(new Racer("CLS", LocalTime.parse("12:10:54.750")));
+        listEndTest.add(new Racer("LHM", LocalTime.parse("12:19:32.585")));
         return listEndTest;
     }
 
