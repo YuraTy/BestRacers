@@ -1,65 +1,66 @@
 package com.foxminded.racedao;
 
 import com.foxminded.racer.Racer;
-import org.junit.jupiter.api.Assertions;
+import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.junit.jupiter.MockitoExtension;
+
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.io.IOException;
 import java.time.LocalTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
-@ExtendWith(MockitoExtension.class)
 class RaceDaoTest {
 
     private final RaceDao raceDao = new RaceDao();
 
     @Test
     void timeParticipantsStart() throws IOException {
-        String fileStartTest = "resources/start.log";
+        String fileStartTest = "src/test/resources/start.log";
         List<Racer> listTimeExpectations = testListTimeStart();
         List<Racer> actualList = raceDao.timeParticipants(fileStartTest);
-        Assertions.assertEquals(listTimeExpectations, actualList);
+        assertThat(Arrays.asList(actualList), Matchers.containsInAnyOrder(listTimeExpectations));
     }
 
     @Test
     void timeParticipantsEnd() throws IOException {
-        String fileEndTest = "resources/end.log";
+        String fileEndTest = "src/test/resources/end.log";
         List<Racer> listTimeExpectations = testListTimeEnd();
         List<Racer> actualList = raceDao.timeParticipants(fileEndTest);
-        Assertions.assertEquals(listTimeExpectations, actualList);
+        assertThat(Arrays.asList(actualList), Matchers.containsInAnyOrder(listTimeExpectations));
     }
 
     @Test
     void abbreviationParticipants() throws IOException {
-        String fileAbbreviationsTest = "resources/abbreviations.txt";
+        String fileAbbreviationsTest = "src/test/resources/abbreviations.txt";
         List<Racer> abbreviationExpectationList = testListAbbreviation();
         List<Racer> actualList = raceDao.abbreviationParticipants(fileAbbreviationsTest);
-        Assertions.assertEquals(abbreviationExpectationList, actualList);
+        assertThat(Arrays.asList(actualList), Matchers.containsInAnyOrder(abbreviationExpectationList));
     }
 
     public List<Racer> testListAbbreviation() {
         List<Racer> abbreviationExpectationsList = new ArrayList<>();
-        abbreviationExpectationsList.add(new Racer("DRR","Daniel Ricciardo","RED BULL RACING TAG HEUER"));
-        abbreviationExpectationsList.add(new Racer("SVF","Sebastian Vettel","FERRARI"));
-        abbreviationExpectationsList.add(new Racer("LHM","Lewis Hamilton","MERCEDES"));
-        abbreviationExpectationsList.add(new Racer("KRF","Kimi Raikkonen","FERRARI"));
-        abbreviationExpectationsList.add(new Racer("VBM","Valtteri Bottas","MERCEDES"));
-        abbreviationExpectationsList.add(new Racer("EOF","Esteban Ocon","FORCE INDIA MERCEDES"));
-        abbreviationExpectationsList.add(new Racer("FAM","Fernando Alonso","MCLAREN RENAULT"));
-        abbreviationExpectationsList.add(new Racer("CSR","Carlos Sainz","RENAULT"));
-        abbreviationExpectationsList.add(new Racer("SPF","Sergio Perez","FORCE INDIA MERCEDES"));
-        abbreviationExpectationsList.add(new Racer("PGS","Pierre Gasly","SCUDERIA TORO ROSSO HONDA"));
-        abbreviationExpectationsList.add(new Racer("NHR","Nico Hulkenberg","RENAULT"));
-        abbreviationExpectationsList.add(new Racer("SVM","Stoffel Vandoorne","MCLAREN RENAULT"));
-        abbreviationExpectationsList.add(new Racer("SSW","Sergey Sirotkin","WILLIAMS MERCEDES"));
-        abbreviationExpectationsList.add(new Racer("CLS","Charles Leclerc","SAUBER FERRARI"));
-        abbreviationExpectationsList.add(new Racer("RGH","Romain Grosjean","HAAS FERRARI"));
-        abbreviationExpectationsList.add(new Racer("BHS","Brendon Hartley","SCUDERIA TORO ROSSO HONDA"));
-        abbreviationExpectationsList.add(new Racer("MES","Marcus Ericsson","SAUBER FERRARI"));
-        abbreviationExpectationsList.add(new Racer("LSW","Lance Stroll","WILLIAMS MERCEDES"));
-        abbreviationExpectationsList.add(new Racer("KMH","Kevin Magnussen","HAAS FERRARI"));
+        abbreviationExpectationsList.add(new Racer("DRR", "Daniel Ricciardo", "RED BULL RACING TAG HEUER"));
+        abbreviationExpectationsList.add(new Racer("SVF", "Sebastian Vettel", "FERRARI"));
+        abbreviationExpectationsList.add(new Racer("LHM", "Lewis Hamilton", "MERCEDES"));
+        abbreviationExpectationsList.add(new Racer("KRF", "Kimi Raikkonen", "FERRARI"));
+        abbreviationExpectationsList.add(new Racer("VBM", "Valtteri Bottas", "MERCEDES"));
+        abbreviationExpectationsList.add(new Racer("EOF", "Esteban Ocon", "FORCE INDIA MERCEDES"));
+        abbreviationExpectationsList.add(new Racer("FAM", "Fernando Alonso", "MCLAREN RENAULT"));
+        abbreviationExpectationsList.add(new Racer("CSR", "Carlos Sainz", "RENAULT"));
+        abbreviationExpectationsList.add(new Racer("SPF", "Sergio Perez", "FORCE INDIA MERCEDES"));
+        abbreviationExpectationsList.add(new Racer("PGS", "Pierre Gasly", "SCUDERIA TORO ROSSO HONDA"));
+        abbreviationExpectationsList.add(new Racer("NHR", "Nico Hulkenberg", "RENAULT"));
+        abbreviationExpectationsList.add(new Racer("SVM", "Stoffel Vandoorne", "MCLAREN RENAULT"));
+        abbreviationExpectationsList.add(new Racer("SSW", "Sergey Sirotkin", "WILLIAMS MERCEDES"));
+        abbreviationExpectationsList.add(new Racer("CLS", "Charles Leclerc", "SAUBER FERRARI"));
+        abbreviationExpectationsList.add(new Racer("RGH", "Romain Grosjean", "HAAS FERRARI"));
+        abbreviationExpectationsList.add(new Racer("BHS", "Brendon Hartley", "SCUDERIA TORO ROSSO HONDA"));
+        abbreviationExpectationsList.add(new Racer("MES", "Marcus Ericsson", "SAUBER FERRARI"));
+        abbreviationExpectationsList.add(new Racer("LSW", "Lance Stroll", "WILLIAMS MERCEDES"));
+        abbreviationExpectationsList.add(new Racer("KMH", "Kevin Magnussen", "HAAS FERRARI"));
         return abbreviationExpectationsList;
     }
 

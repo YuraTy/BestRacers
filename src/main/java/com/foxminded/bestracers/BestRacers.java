@@ -11,8 +11,5 @@ public class BestRacers {
     public static void main(String[] args) throws IOException {
         RaceDao raceDao = new RaceDao();
         List<Racer> abbreviationMap = new ArrayList<>(raceDao.abbreviationParticipants("resources/abbreviations.txt"));
-       for (Racer racer : abbreviationMap){
-           System.out.println(racer.getName()+ "="+ racer.getFulName() + "=" + racer.getCar());
-       }
     }
 }
