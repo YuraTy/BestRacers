@@ -17,16 +17,16 @@ class RaceDaoTest {
     private final RaceDao raceDao = new RaceDao();
 
     @Test
-    void timeParticipantsStart() throws IOException {
-        String fileStartTest = "src/test/resources/start.log";
+    void timeParticipantsStart(){
+        String fileStartTest = "start.log";
         List<Racer> listTimeExpectations = testListTimeStart();
         List<Racer> actualList = raceDao.timeParticipants(fileStartTest);
         assertThat(Arrays.asList(actualList), Matchers.containsInAnyOrder(listTimeExpectations));
     }
 
     @Test
-    void timeParticipantsEnd() throws IOException {
-        String fileEndTest = "src/test/resources/end.log";
+    void timeParticipantsEnd()  {
+        String fileEndTest = "end.log";
         List<Racer> listTimeExpectations = testListTimeEnd();
         List<Racer> actualList = raceDao.timeParticipants(fileEndTest);
         assertThat(Arrays.asList(actualList), Matchers.containsInAnyOrder(listTimeExpectations));
@@ -34,7 +34,7 @@ class RaceDaoTest {
 
     @Test
     void abbreviationParticipants() throws IOException {
-        String fileAbbreviationsTest = "src/test/resources/abbreviations.txt";
+        String fileAbbreviationsTest = "abbreviations.txt";
         List<Racer> abbreviationExpectationList = testListAbbreviation();
         List<Racer> actualList = raceDao.abbreviationParticipants(fileAbbreviationsTest);
         assertThat(Arrays.asList(actualList), Matchers.containsInAnyOrder(abbreviationExpectationList));
