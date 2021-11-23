@@ -1,5 +1,6 @@
 package com.foxminded.racer;
 
+import java.time.Duration;
 import java.time.LocalTime;
 import java.util.Objects;
 
@@ -11,9 +12,34 @@ public class Racer {
         this.name = name;
     }
 
+    public Racer(String name, Duration between) {
+    }
+
+    public Duration getBetween() {
+        return between;
+    }
+
+    Duration between;
+
+    public long getSecond() {
+        return second;
+    }
+
+    long second;
+
+    public String getSecon() {
+        return secon;
+    }
+
+    String secon;
+    public Racer(String name, String secon) {
+        this.name = name;
+        this.secon = secon;
+    }
+
     @Override
     public String toString() {
-        return getName() + "=" + getLocalTime();
+        return getName() + "=" + getSecon()  ;
     }
 
     public Racer(String name, LocalTime localTime) {
