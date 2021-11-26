@@ -1,4 +1,4 @@
-package com.foxminded.racedao;
+package com.foxminded.dao;
 
 import com.foxminded.racer.Racer;
 
@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class RaceDao {
+public class Dao {
 
     public List<Racer> timeParticipants(String filePath) {
         InputStream propertiesStream = ClassLoader.getSystemClassLoader().getResourceAsStream(filePath);

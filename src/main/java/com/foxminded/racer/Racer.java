@@ -29,14 +29,18 @@ public class Racer implements Comparable<Racer> {
         this.name = name;
     }
 
-    public Duration getBetween() {
-        return between;
+    public void setTravelTime(Duration travelTime) {
+        this.travelTime = travelTime;
     }
 
-    private Duration between;
+    public Duration getTravelTime() {
+        return travelTime;
+    }
 
-    public Racer(String name, Duration between) {
-        this.between = between;
+    private Duration travelTime;
+
+    public Racer(String name, Duration travelTime) {
+        this.travelTime = travelTime;
         this.name = name;
     }
 
@@ -58,18 +62,18 @@ public class Racer implements Comparable<Racer> {
         Racer racer = (Racer) o;
         if (localDateTime != null && (localDateTime.equals(racer.localDateTime) && name.equals(racer.name))) {
             return true;
-        } else if (between != null && (between.equals(racer.between)) && name.equals(racer.name)) {
+        } else if (travelTime != null && (travelTime.equals(racer.travelTime)) && name.equals(racer.name)) {
             return true;
         } else return car.equals(racer.car) && name.equals(racer.name) && nameSurname.equals(racer.nameSurname);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(car, nameSurname, name, localDateTime, between);
+        return Objects.hash(car, nameSurname, name, localDateTime, travelTime);
     }
 
     @Override
     public int compareTo(Racer racer) {
-        return racer.getBetween().compareTo(this.getBetween());
+        return racer.getTravelTime().compareTo(this.getTravelTime());
     }
 }

@@ -1,4 +1,4 @@
-package com.foxminded.racedao;
+package com.foxminded.dao;
 
 import com.foxminded.racer.Racer;
 import org.hamcrest.Matchers;
@@ -11,15 +11,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-class RaceDaoTest {
+class DaoTest {
 
-    private final RaceDao raceDao = new RaceDao();
+    private final Dao dao = new Dao();
 
     @Test
     void timeParticipantsStart() {
         String fileStartTest = "start.log";
         List<Racer> listTimeExpectations = testListTimeStart();
-        List<Racer> actualList = raceDao.timeParticipants(fileStartTest);
+        List<Racer> actualList = dao.timeParticipants(fileStartTest);
         assertThat(Arrays.asList(actualList), Matchers.containsInAnyOrder(listTimeExpectations));
     }
 
@@ -27,7 +27,7 @@ class RaceDaoTest {
     void timeParticipantsEnd() {
         String fileEndTest = "end.log";
         List<Racer> listTimeExpectations = testListTimeEnd();
-        List<Racer> actualList = raceDao.timeParticipants(fileEndTest);
+        List<Racer> actualList = dao.timeParticipants(fileEndTest);
         assertThat(Arrays.asList(actualList), Matchers.containsInAnyOrder(listTimeExpectations));
     }
 
@@ -35,7 +35,7 @@ class RaceDaoTest {
     void abbreviationParticipants() {
         String fileAbbreviationsTest = "abbreviations.txt";
         List<Racer> abbreviationExpectationList = testListAbbreviation();
-        List<Racer> actualList = raceDao.abbreviationParticipants(fileAbbreviationsTest);
+        List<Racer> actualList = dao.abbreviationParticipants(fileAbbreviationsTest);
         assertThat(Arrays.asList(actualList), Matchers.containsInAnyOrder(abbreviationExpectationList));
     }
 

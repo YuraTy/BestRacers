@@ -1,8 +1,14 @@
-package com.foxminded.raceservises;
+package com.foxminded.servises;
 
+import com.foxminded.dao.Dao;
 import com.foxminded.racer.Racer;
 import org.junit.jupiter.api.Test;
 import org.hamcrest.Matchers;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -12,14 +18,24 @@ import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 
-class RaceServisesTest {
+@ExtendWith(MockitoExtension.class)
+class ServisesTest {
 
-    private final RaceServises raceServises = new RaceServises();
+    private static final String EXPECTED_PATH_START = "start.log";
+    private static final String EXPECTED_PATH_END = "end.log";
+
+    @Mock
+    private Dao dao;
+
+    @InjectMocks
+    private Servises servises;
 
     @Test
     void timeDifference() {
+        Mockito.lenient().when(dao.timeParticipants(Mockito.eq(EXPECTED_PATH_START))).thenReturn(testListTimeStart());
+        Mockito.lenient().when(dao.timeParticipants(Mockito.eq(EXPECTED_PATH_END))).thenReturn(testListTimeEnd());
+        List<Racer> actualList = servises.bestCircle();
         List<Racer> expectedList = expectedListTest();
-        List<Racer> actualList = raceServises.bestCircle(testListTimeStart(), testListTimeEnd());
         assertThat(Arrays.asList(actualList), Matchers.containsInAnyOrder(expectedList));
     }
 
