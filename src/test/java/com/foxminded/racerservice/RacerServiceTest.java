@@ -1,66 +1,66 @@
-package com.foxminded.dao;
+package com.foxminded.racerservice;
 
+import com.foxminded.racerdao.RacerDao;
 import com.foxminded.racer.Racer;
-import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
+import org.hamcrest.Matchers;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-class DaoTest {
+import static org.hamcrest.MatcherAssert.assertThat;
 
-    private final Dao dao = new Dao();
+@ExtendWith(MockitoExtension.class)
+class RacerServiceTest {
 
-    @Test
-    void timeParticipantsStart() {
-        String fileStartTest = "start.log";
-        List<Racer> listTimeExpectations = testListTimeStart();
-        List<Racer> actualList = dao.timeParticipants(fileStartTest);
-        assertThat(Arrays.asList(actualList), Matchers.containsInAnyOrder(listTimeExpectations));
-    }
+    private static final String EXPECTED_PATH_START = "start.log";
+    private static final String EXPECTED_PATH_END = "end.log";
 
-    @Test
-    void timeParticipantsEnd() {
-        String fileEndTest = "end.log";
-        List<Racer> listTimeExpectations = testListTimeEnd();
-        List<Racer> actualList = dao.timeParticipants(fileEndTest);
-        assertThat(Arrays.asList(actualList), Matchers.containsInAnyOrder(listTimeExpectations));
-    }
+    @Mock
+    private RacerDao racerDao;
+
+    @InjectMocks
+    private RacerService racerService;
 
     @Test
-    void abbreviationParticipants() {
-        String fileAbbreviationsTest = "abbreviations.txt";
-        List<Racer> abbreviationExpectationList = testListAbbreviation();
-        List<Racer> actualList = dao.abbreviationParticipants(fileAbbreviationsTest);
-        assertThat(Arrays.asList(actualList), Matchers.containsInAnyOrder(abbreviationExpectationList));
+    void timeDifference() {
+        Mockito.lenient().when(racerDao.timeParticipants(Mockito.eq(EXPECTED_PATH_START))).thenReturn(testListTimeStart());
+        Mockito.lenient().when(racerDao.timeParticipants(Mockito.eq(EXPECTED_PATH_END))).thenReturn(testListTimeEnd());
+        List<Racer> actualList = racerService.bestCircle();
+        List<Racer> expectedList = expectedListTest();
+        assertThat(Arrays.asList(actualList), Matchers.containsInAnyOrder(expectedList));
     }
 
-    public List<Racer> testListAbbreviation() {
-        List<Racer> abbreviationExpectationsList = new ArrayList<>();
-        abbreviationExpectationsList.add(new Racer("DRR", "Daniel Ricciardo", "RED BULL RACING TAG HEUER"));
-        abbreviationExpectationsList.add(new Racer("SVF", "Sebastian Vettel", "FERRARI"));
-        abbreviationExpectationsList.add(new Racer("LHM", "Lewis Hamilton", "MERCEDES"));
-        abbreviationExpectationsList.add(new Racer("KRF", "Kimi Raikkonen", "FERRARI"));
-        abbreviationExpectationsList.add(new Racer("VBM", "Valtteri Bottas", "MERCEDES"));
-        abbreviationExpectationsList.add(new Racer("EOF", "Esteban Ocon", "FORCE INDIA MERCEDES"));
-        abbreviationExpectationsList.add(new Racer("FAM", "Fernando Alonso", "MCLAREN RENAULT"));
-        abbreviationExpectationsList.add(new Racer("CSR", "Carlos Sainz", "RENAULT"));
-        abbreviationExpectationsList.add(new Racer("SPF", "Sergio Perez", "FORCE INDIA MERCEDES"));
-        abbreviationExpectationsList.add(new Racer("PGS", "Pierre Gasly", "SCUDERIA TORO ROSSO HONDA"));
-        abbreviationExpectationsList.add(new Racer("NHR", "Nico Hulkenberg", "RENAULT"));
-        abbreviationExpectationsList.add(new Racer("SVM", "Stoffel Vandoorne", "MCLAREN RENAULT"));
-        abbreviationExpectationsList.add(new Racer("SSW", "Sergey Sirotkin", "WILLIAMS MERCEDES"));
-        abbreviationExpectationsList.add(new Racer("CLS", "Charles Leclerc", "SAUBER FERRARI"));
-        abbreviationExpectationsList.add(new Racer("RGH", "Romain Grosjean", "HAAS FERRARI"));
-        abbreviationExpectationsList.add(new Racer("BHS", "Brendon Hartley", "SCUDERIA TORO ROSSO HONDA"));
-        abbreviationExpectationsList.add(new Racer("MES", "Marcus Ericsson", "SAUBER FERRARI"));
-        abbreviationExpectationsList.add(new Racer("LSW", "Lance Stroll", "WILLIAMS MERCEDES"));
-        abbreviationExpectationsList.add(new Racer("KMH", "Kevin Magnussen", "HAAS FERRARI"));
-        return abbreviationExpectationsList;
+    private List<Racer> expectedListTest() {
+        List<Racer> listTest = new ArrayList<>();
+        listTest.add(new Racer("SVF", Duration.parse("PT-1M-4.415S")));
+        listTest.add(new Racer("DRR", Duration.parse("PT-1M-12.013S")));
+        listTest.add(new Racer("VBM", Duration.parse("PT-1M-12.434S")));
+        listTest.add(new Racer("LHM", Duration.parse("PT-1M-12.46S")));
+        listTest.add(new Racer("SVM", Duration.parse("PT-1M-12.463S")));
+        listTest.add(new Racer("KRF", Duration.parse("PT-1M-12.639S")));
+        listTest.add(new Racer("FAM", Duration.parse("PT-1M-12.657S")));
+        listTest.add(new Racer("SSW", Duration.parse("PT-1M-12.706S")));
+        listTest.add(new Racer("CLS", Duration.parse("PT-1M-12.829S")));
+        listTest.add(new Racer("SPF", Duration.parse("PT-1M-12.848S")));
+        listTest.add(new Racer("RGH", Duration.parse("PT-1M-12.93S")));
+        listTest.add(new Racer("PGS", Duration.parse("PT-1M-12.941S")));
+        listTest.add(new Racer("CSR", Duration.parse("PT-1M-12.95S")));
+        listTest.add(new Racer("EOF", Duration.parse("PT-1M-13.028S")));
+        listTest.add(new Racer("NHR", Duration.parse("PT-1M-13.065S")));
+        listTest.add(new Racer("BHS", Duration.parse("PT-1M-13.179S")));
+        listTest.add(new Racer("MES", Duration.parse("PT-1M-13.265S")));
+        listTest.add(new Racer("LSW", Duration.parse("PT-1M-13.323S")));
+        listTest.add(new Racer("KMH", Duration.parse("PT-1M-13.393S")));
+        return listTest;
     }
 
     public List<Racer> testListTimeStart() {
@@ -110,5 +110,4 @@ class DaoTest {
         listEndTest.add(new Racer("LHM", LocalDateTime.parse("2018-05-24T12:19:32.585")));
         return listEndTest;
     }
-
 }

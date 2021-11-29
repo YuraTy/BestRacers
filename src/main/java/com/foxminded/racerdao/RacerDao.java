@@ -1,20 +1,22 @@
-package com.foxminded.dao;
+package com.foxminded.racerdao;
 
 import com.foxminded.racer.Racer;
 
 
 import java.io.*;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class Dao {
+public class RacerDao {
 
     public List<Racer> timeParticipants(String filePath) {
         InputStream propertiesStream = ClassLoader.getSystemClassLoader().getResourceAsStream(filePath);
+        String dataPattern = "yyyy-MM-dd_HH:mm:ss.SSS";
         assert propertiesStream != null;
         return new BufferedReader(new InputStreamReader(propertiesStream)).lines()
-                .map(p -> new Racer(p.substring(0, 3), LocalDateTime.parse(p.substring(3).replace("_", "T"))))
+                .map(p -> new Racer(p.substring(0, 3), LocalDateTime.parse(p.substring(3), DateTimeFormatter.ofPattern(dataPattern))))
                 .collect(Collectors.toList());
     }
 
