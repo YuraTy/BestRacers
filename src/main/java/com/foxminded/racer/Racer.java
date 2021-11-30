@@ -74,6 +74,6 @@ public class Racer implements Comparable<Racer> {
 
     @Override
     public int compareTo(Racer racer) {
-        return racer.getTravelTime().compareTo(this.getTravelTime());
+        return this.getTravelTime().compareTo(racer.getTravelTime());
     }
 }

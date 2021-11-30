@@ -16,8 +16,8 @@ public class RacerService {
     public List<Racer> bestCircle() {
         List<Racer> start = racerDao.timeParticipants("start.log");
         List<Racer> end = racerDao.timeParticipants("end.log");
-        return end.stream()
-                .peek(p -> p.setTravelTime(Duration.between(p.getLocalDateTime(), searchObject(start, p.getName()).get())))
+        return start.stream()
+                .peek(p -> p.setTravelTime(Duration.between(p.getLocalDateTime(), searchObject(end, p.getName()).get())))
                 .sorted()
                 .collect(Collectors.toList());
     }
