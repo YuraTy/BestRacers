@@ -10,7 +10,6 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,25 +40,25 @@ class RacerServiceTest {
 
     private List<Racer> expectedListTest() {
         List<Racer> listTest = new ArrayList<>();
-        listTest.add(new Racer("SVF", Duration.parse("PT-1M-4.415S")));
-        listTest.add(new Racer("DRR", Duration.parse("PT-1M-12.013S")));
-        listTest.add(new Racer("VBM", Duration.parse("PT-1M-12.434S")));
-        listTest.add(new Racer("LHM", Duration.parse("PT-1M-12.46S")));
-        listTest.add(new Racer("SVM", Duration.parse("PT-1M-12.463S")));
-        listTest.add(new Racer("KRF", Duration.parse("PT-1M-12.639S")));
-        listTest.add(new Racer("FAM", Duration.parse("PT-1M-12.657S")));
-        listTest.add(new Racer("SSW", Duration.parse("PT-1M-12.706S")));
-        listTest.add(new Racer("CLS", Duration.parse("PT-1M-12.829S")));
-        listTest.add(new Racer("SPF", Duration.parse("PT-1M-12.848S")));
-        listTest.add(new Racer("RGH", Duration.parse("PT-1M-12.93S")));
-        listTest.add(new Racer("PGS", Duration.parse("PT-1M-12.941S")));
-        listTest.add(new Racer("CSR", Duration.parse("PT-1M-12.95S")));
-        listTest.add(new Racer("EOF", Duration.parse("PT-1M-13.028S")));
-        listTest.add(new Racer("NHR", Duration.parse("PT-1M-13.065S")));
-        listTest.add(new Racer("BHS", Duration.parse("PT-1M-13.179S")));
-        listTest.add(new Racer("MES", Duration.parse("PT-1M-13.265S")));
-        listTest.add(new Racer("LSW", Duration.parse("PT-1M-13.323S")));
-        listTest.add(new Racer("KMH", Duration.parse("PT-1M-13.393S")));
+        listTest.add(new Racer("SVF","Sebastian Vettel","FERRARI"));
+        listTest.add(new Racer("DRR","Daniel Ricciardo","RED BULL RACING TAG HEUER"));
+        listTest.add(new Racer("VBM","Valtteri Bottas","MERCEDES"));
+        listTest.add(new Racer("LHM","Lewis Hamilton","MERCEDES"));
+        listTest.add(new Racer("SVM","Stoffel Vandoorne","MCLAREN RENAULT"));
+        listTest.add(new Racer("KRF","Kimi Raikkonen","FERRARI"));
+        listTest.add(new Racer("FAM","Fernando Alonso","MCLAREN RENAULT"));
+        listTest.add(new Racer("SSW","Sergey Sirotkin","WILLIAMS MERCEDES"));
+        listTest.add(new Racer("CLS","Charles Leclerc","SAUBER FERRARI"));
+        listTest.add(new Racer("SPF","Sergio Perez","FORCE INDIA MERCEDES"));
+        listTest.add(new Racer("RGH","Romain Grosjean","HAAS FERRARI"));
+        listTest.add(new Racer("PGS","Pierre Gasly","SCUDERIA TORO ROSSO HONDA"));
+        listTest.add(new Racer("CSR","Carlos Sainz","RENAULT"));
+        listTest.add(new Racer("EOF","Esteban Ocon","FORCE INDIA MERCEDES"));
+        listTest.add(new Racer("NHR","Nico Hulkenberg","RENAULT"));
+        listTest.add(new Racer("BHS","Brendon Hartley","SCUDERIA TORO ROSSO HONDA"));
+        listTest.add(new Racer("MES","Marcus Ericsson","SAUBER FERRARI"));
+        listTest.add(new Racer("LSW","Lance Stroll","WILLIAMS MERCEDES"));
+        listTest.add(new Racer("KMH","Kevin Magnussen","HAAS FERRARI"));
         return listTest;
     }
 

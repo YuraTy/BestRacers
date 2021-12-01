@@ -6,7 +6,6 @@ import java.util.Objects;
 
 public class Racer implements Comparable<Racer> {
     private String car;
-
     public String getCar() {
         return car;
     }

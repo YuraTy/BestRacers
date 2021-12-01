@@ -1,4 +1,4 @@
-package com.foxminded.resultrrival;
+package com.foxminded.timeformatter;
 
 import com.foxminded.racer.Racer;
 import com.foxminded.racerservice.RacerService;
@@ -15,13 +15,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @ExtendWith(MockitoExtension.class)
-class ResultArrivalTest {
+class TimeFormatterTest {
 
     @Mock
-    RacerService racerService;
+    private RacerService racerService;
 
     @InjectMocks
-    ResultArrival resultArrival;
+    private TimeFormatter timeFormatter;
 
 
     private static final String EXPECTED_STING =
@@ -40,13 +40,17 @@ class ResultArrivalTest {
             "13 Carlos Sainz      |RENAULT                   |1:12.950\n" +
             "14 Esteban Ocon      |FORCE INDIA MERCEDES      |1:13.028\n" +
             "15 Nico Hulkenberg   |RENAULT                   |1:13.065\n" +
+            "---------------------------------------------------------\n" +
             "16 Brendon Hartley   |SCUDERIA TORO ROSSO HONDA |1:13.179\n" +
-            "17 Marcus Ericsson   |SAUBER FERRARI            |1:13.265" ;
+            "17 Marcus Ericsson   |SAUBER FERRARI            |1:13.265\n" +
+            "18 Lance Stroll      |WILLIAMS MERCEDES         |1:13.323\n" +
+            "19 Kevin Magnussen   |HAAS FERRARI              |1:13.393" ;
+
 
     @Test
     void resultOutput() {
         Mockito.lenient().when(racerService.bestCircle()).thenReturn(expectedListTest());
-        String actual = resultArrival.resultOutput();
+        String actual = timeFormatter.resultOutput();
         Assertions.assertEquals(EXPECTED_STING,actual);
 
     }

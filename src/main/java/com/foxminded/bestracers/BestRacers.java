@@ -1,11 +1,11 @@
 package com.foxminded.bestracers;
 
-import com.foxminded.resultrrival.ResultArrival;
+import com.foxminded.timeformatter.TimeFormatter;
 
 public class BestRacers {
     public static void main(String[] args) {
-        ResultArrival resultArrival =new ResultArrival();
-            System.out.println(resultArrival.resultOutput());
+        TimeFormatter timeFormatter = new TimeFormatter();
+            System.out.println(timeFormatter.resultOutput());
     }
 
 }
