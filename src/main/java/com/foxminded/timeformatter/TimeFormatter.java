@@ -13,9 +13,10 @@ public class TimeFormatter {
 
     private final RacerService racerService = new RacerService();
     private static int numberRacer = 0;
+    private final List<Racer> racerList = racerService.bestCircle();
 
     public String resultOutput() {
-        return racerService.bestCircle().stream()
+        return racerList.stream()
                 .peek(p -> numberRacer ++)
                 .map(p -> String.format("%-3d%-18s|%-26s|%s%s", numberRacer, p.getNameSurname(), p.getCar(), timeFormatting(p.getTravelTime()), delimiterTop15(numberRacer)))
                 .collect(Collectors.joining("\n"));
@@ -33,7 +34,6 @@ public class TimeFormatter {
     }
 
     private int max () {
-        List<Racer> racerList = racerService.bestCircle();
         assert racerList != null;
         return racerList.stream()
                 .map(p-> (String.format("%-3d%-18s|%-26s|%s", numberRacer, p.getNameSurname(), p.getCar(), timeFormatting(p.getTravelTime()))).split("").length)
