@@ -7,5 +7,4 @@ public class BestRacers {
         TimeFormatter timeFormatter = new TimeFormatter();
             System.out.println(timeFormatter.resultOutput());
     }
-
 }
