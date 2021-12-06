@@ -5,9 +5,9 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Racer implements Comparable<Racer> {
-    private String car;
-    public String getCar() {
-        return car;
+    private String team;
+    public String getTeam() {
+        return team;
     }
 
     private String nameSurname;
@@ -22,8 +22,8 @@ public class Racer implements Comparable<Racer> {
         return name;
     }
 
-    public Racer(String name, String nameSurname, String car) {
-        this.car = car;
+    public Racer(String name, String nameSurname, String team) {
+        this.team = team;
         this.nameSurname = nameSurname;
         this.name = name;
     }
@@ -63,12 +63,12 @@ public class Racer implements Comparable<Racer> {
             return true;
         } else if (travelTime != null && (travelTime.equals(racer.travelTime)) && name.equals(racer.name)) {
             return true;
-        } else return car.equals(racer.car) && name.equals(racer.name) && nameSurname.equals(racer.nameSurname);
+        } else return team.equals(racer.team) && name.equals(racer.name) && nameSurname.equals(racer.nameSurname);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(car, nameSurname, name, localDateTime, travelTime);
+        return Objects.hash(team, nameSurname, name, localDateTime, travelTime);
     }
 
     @Override
