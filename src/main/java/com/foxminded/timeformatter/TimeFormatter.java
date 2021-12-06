@@ -19,8 +19,8 @@ public class TimeFormatter {
         int maxRacerLength = calculateMaxRacerLength(racerList);
 
         return racerList.stream()
-                .peek(p -> numberRacer ++)
-                .map(p -> formatItem(p,numberRacer,maxTeamLength,maxRacerLength))
+                .peek(p -> numberRacer++)
+                .map(p -> formatItem(p, numberRacer, maxTeamLength, maxRacerLength, racerList.size()))
                 .collect(Collectors.joining("\n"));
     }
 
@@ -28,24 +28,26 @@ public class TimeFormatter {
         return DurationFormatUtils.formatDuration(travelTime.toMillis(), "m:ss.SSS");
     }
 
-    private int calculateMaxRacerLength (List<Racer> racerList) {
+    private int calculateMaxRacerLength(List<Racer> racerList) {
         return racerList.stream()
-                .map(p-> Integer.toString(numberRacer).length() +p.getNameSurname().length() + timeFormatting(p.getTravelTime()).length() )
+                .map(p -> p.getNameSurname().length())
                 .max(Integer::compare)
                 .get();
     }
 
-    private int calculateMaxTeamLength (List<Racer> racerList) {
+    private int calculateMaxTeamLength(List<Racer> racerList) {
         return racerList.stream()
-                .map(p-> p.getTeam().length() )
+                .map(p -> p.getTeam().length())
                 .max(Integer::compare)
                 .get();
     }
 
-    private String formatItem (Racer racer , int numberRacer , int maxTeamLength , int maxRacerLength) {
+    private String formatItem(Racer racer, int numberRacer, int maxTeamLength, int maxRacerLength, int maxNumberRacer) {
+        int maxParticipants = Integer.toString(maxNumberRacer).length();
         String delimiter = "-";
         if (numberRacer == 15) {
-            return   String.format("%-2d.%-17s|%-25s|%s%s", numberRacer, racer.getNameSurname(), racer.getTeam(), timeFormatting(racer.getTravelTime()),"\n"+ delimiter.repeat(maxRacerLength + maxTeamLength + 4));
-        } else return String.format("%-2d.%-17s|%-25s|%s", numberRacer, racer.getNameSurname(), racer.getTeam(), timeFormatting(racer.getTravelTime()));
+            return String.format("%-" + maxParticipants + "d.%-" + maxRacerLength + "s|%-" + maxTeamLength + "s|%s%s", numberRacer, racer.getNameSurname(), racer.getTeam(), timeFormatting(racer.getTravelTime()), "\n" + delimiter.repeat(maxParticipants + maxRacerLength + maxTeamLength + timeFormatting(racer.getTravelTime()).length() + 3));
+        } else
+            return String.format("%-" + maxParticipants + "d.%-" + maxRacerLength + "s|%-" + maxTeamLength + "s|%s", numberRacer, racer.getNameSurname(), racer.getTeam(), timeFormatting(racer.getTravelTime()));
     }
 }
